@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DndMapRepo.Repos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,16 @@ namespace DndMapRepo
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                BindMaps();
+            }
+        }
 
+        private void BindMaps()
+        {
+            rptMaps.DataSource = MapRepository.GetMaps();
+            rptMaps.DataBind();
         }
     }
 }
