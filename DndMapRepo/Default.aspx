@@ -13,6 +13,15 @@
                     <div class="file-path">
                         <strong>File:</strong> <%# Eval("File") %>
                     </div>
+
+                    <asp:Button
+                        ID="btnPlay"
+                        runat="server"
+                        Text="Play"
+                        CommandName="Play"
+                        CommandArgument='<%# Eval("Id") %>'
+                        OnClientClick='<%# "window.open(\"Player.aspx?id=" + Eval("Id") + "\", \"_blank\"); return false;" %>'
+                        OnCommand="btnPlay_Command" />
                 </div>
             </ItemTemplate>
         </asp:Repeater>

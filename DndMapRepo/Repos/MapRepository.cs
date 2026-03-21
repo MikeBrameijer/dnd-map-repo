@@ -1,8 +1,9 @@
+using DndMapRepo.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Web.Hosting;
-using DndMapRepo.Models;
 
 namespace DndMapRepo.Repos
 {
@@ -28,6 +29,12 @@ namespace DndMapRepo.Repos
             
             maps = JsonConvert.DeserializeObject<List<MapVideo>>(json) ?? maps;
             return maps;
+        }
+
+        public static MapVideo GetMapById(int id)
+        {
+            var maps = GetMaps();
+            return maps.FirstOrDefault(x => x.Id == id);
         }
     }
 }

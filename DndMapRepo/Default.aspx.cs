@@ -23,5 +23,13 @@ namespace DndMapRepo
             rptMaps.DataSource = MapRepository.GetMaps();
             rptMaps.DataBind();
         }
+
+        protected void btnPlay_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "Play")
+            {
+                Response.Redirect("Player.aspx?id=" + e.CommandArgument);
+            }
+        }
     }
 }
