@@ -52,8 +52,18 @@
                 cards[currentIndex].classList.add('border', 'border-success');
             }
 
-            function nextPlayer() { setActive(currentIndex + 1); }
-            function prevPlayer() { setActive(currentIndex - 1); }
+            function clearCardArrows()
+            {
+                document.querySelectorAll('#playerList > div').forEach(function (c)
+                {
+                    c.querySelector('div').classList.add('d-none');
+                    c.querySelector('div').classList.remove('d-flex');
+                    c.classList.remove('border', 'border-primary');
+                });
+            }
+
+            function nextPlayer() { clearCardArrows(); setActive(currentIndex + 1); }
+            function prevPlayer() { clearCardArrows(); setActive(currentIndex - 1); }
 
             function createCard(name) 
             {
@@ -103,12 +113,7 @@
                 card.onclick = function() 
                 {
                     var isVisible = !arrows.classList.contains('d-none');
-                    document.querySelectorAll('#playerList > div').forEach(function(c)
-                    {
-                        c.querySelector('div').classList.add('d-none');
-                        c.querySelector('div').classList.remove('d-flex');
-                        c.classList.remove('border-primary');
-                    });
+                    clearCardArrows();
                     if (!isVisible)
                     {
                         arrows.classList.remove('d-none');
